@@ -8,7 +8,7 @@ namespace Lajawi
     public static class SaveSystem
     {
         /// <summary>
-        /// Save provided data for later retrieval. Previous data will be overwritten
+        /// Save provided data for later retrieval. Previous data will be overwritten.
         /// Saves at persistent data location of your application
         /// </summary>
         /// <typeparam name="T">Your custom class, needs to be serializable</typeparam>
@@ -21,7 +21,7 @@ namespace Lajawi
 #if UNITY_WEBGL
             PlayerPrefs.SetString(location, json);
 #else
-            location = $@"{Application.persistentDataPath}\{location}.json";
+            AbsolutePath(ref location);
 
             Directory.CreateDirectory(Directory.GetParent(location).ToString());
 
@@ -49,7 +49,7 @@ namespace Lajawi
 #else
             try
             {
-                using (StreamReader sr = new StreamReader($@"{Application.persistentDataPath}\{location}.json"))
+                using (StreamReader sr = new StreamReader(AbsolutePath(ref location)))
                 {
                     json = sr.ReadToEnd();
                 }
@@ -70,6 +70,16 @@ namespace Lajawi
                 Debug.LogException(e);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Get the absolute path to any save data
+        /// </summary>
+        /// <param name="path">The relative path to the data</param>
+        /// <returns>Absolute path to the save data</returns>
+        private static string AbsolutePath(ref string path)
+        {
+            return path = Path.Combine(Application.persistentDataPath, $"{path}.json");
         }
     }
 }
