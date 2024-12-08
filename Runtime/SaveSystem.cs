@@ -93,6 +93,9 @@ namespace Lajawi
             if (!ParseJson(json, out data))
                 return false;
 
+            if (data == null)
+                return false;
+
             return true;
         }
 
@@ -105,6 +108,9 @@ namespace Lajawi
                 return false;
 
             if (!ParseJson(json, out ArrayWrapper<T> wrapper))
+                return false;
+
+            if (wrapper.Items == null)
                 return false;
 
             data = wrapper.Items.ToList();
@@ -120,6 +126,9 @@ namespace Lajawi
                 return false;
 
             if (!ParseJson(json, out ArrayWrapper<T> wrapper))
+                return false;
+
+            if (wrapper.Items == null)
                 return false;
 
             data = wrapper.Items;
@@ -142,6 +151,10 @@ namespace Lajawi
             try
             {
                 json = File.ReadAllText(AbsolutePath(ref location));
+
+                if (json.Equals(string.Empty))
+                    return false;
+
                 return true;
             }
             catch (Exception e)
@@ -190,6 +203,9 @@ namespace Lajawi
             data = new();
 
             if (!ParseClass(json, out ItemWrapper<T> wrapper))
+                return false;
+
+            if (wrapper == null)
                 return false;
 
             data = wrapper.Item;
