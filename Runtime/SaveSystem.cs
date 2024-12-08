@@ -100,7 +100,7 @@ namespace Lajawi
         }
 
         /// <inheritdoc cref="Load{T}(string, out T)"/>
-        public static bool Load<T>(string location, out List<T> data) where T : new()
+        public static bool Load<T>(string location, out List<T> data)
         {
             data = new();
 
@@ -118,7 +118,7 @@ namespace Lajawi
         }
 
         /// <inheritdoc cref="Load{T}(string, out T)"/>
-        public static bool Load<T>(string location, out T[] data) where T : new()
+        public static bool Load<T>(string location, out T[] data)
         {
             data = new T[0];
 
