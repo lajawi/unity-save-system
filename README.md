@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
         // Your data will be saved in the persistent datapath
         // that Unity provides
+        // In the case of WebGL builds, data will be stored
+        // in the PlayerPrefs instead, with the PATH as key
         SaveSystem.Save(PATH, data);
 
         // Retrieve previously saved data with the same path
@@ -42,10 +44,17 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log($"ID: {readData.id}, name: {readData.name}");
         }
-
-        // Saving lists and arrays is currently not possible
-        // Use a wrapping object instead
     }
+}
+```
+
+```cs
+// Saving lists and arrays is currently not possible
+// Use a wrapping object instead
+[Serializable]
+public class Data
+{
+    public List<string> names = new List<string>();
 }
 ```
 

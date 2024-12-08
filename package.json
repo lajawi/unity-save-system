@@ -1,6 +1,6 @@
 {
     "name": "com.github.lajawi.savesystem",
-    "version": "0.0.1",
+    "version": "1.0.0",
 
     "description": "A very small but powerful system to easily save and load data from JSON files.",
     "displayName": "Save System",
@@ -10,5 +10,9 @@
         "name": "lajawi",
         "email": "",
         "url": "https://github.com/lajawi/"
-    }
+    },
+    "changelogUrl": "https://github.com/lajawi/unity-save-system/blob/main/CHANGELOG.md",
+    "documentationUrl": "https://github.com/lajawi/unity-save-system/blob/main/README.md",
+    "license": "GPL-3.0-only",
+    "licenseURL": "https://github.com/lajawi/unity-save-system/blob/main/LICENSE.md"
 }
