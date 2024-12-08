@@ -1,5 +1,16 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- Support for:
+  - Lists
+  - Arrays
+  - Basic types (i.e. string, float, int, bool, uint...)
+    - > [!WARNING]
+        > Decimal numbers can't be saved 100% accuretally, however, if loaded, they might appear to be correct again
+
 ## [1.0.0] - 2024-12-08
 
 ### Added
