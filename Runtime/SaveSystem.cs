@@ -147,7 +147,7 @@ namespace Lajawi
         /// <param name="location">Relative path to the file, without extension</param>
         /// <param name="json">The variable store the JSON into</param>
         /// <returns>Whether reading the file was a success. Use this instead of a manual null check for ease</returns>
-        private static bool LoadJson(string location, out string json)
+        public static bool LoadJson(string location, out string json)
         {
             json = "";
 
@@ -223,7 +223,7 @@ namespace Lajawi
         /// </summary>
         /// <param name="path">The relative path to the data</param>
         /// <returns>Absolute path to the save data</returns>
-        private static string AbsolutePath(ref string path)
+        public static string AbsolutePath(ref string path)
         {
             return path = Path.Combine(Application.persistentDataPath, $"{path}.json");
         }
