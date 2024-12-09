@@ -13,7 +13,7 @@
     },
     "changelogUrl": "https://github.com/lajawi/unity-save-system/blob/main/CHANGELOG.md",
     "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "2.0.0"
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
     },
     "documentationUrl": "https://github.com/lajawi/unity-save-system/blob/main/README.md",
     "license": "GPL-3.0-only",
