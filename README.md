@@ -8,19 +8,20 @@ Install the package according to the [installation instructions](#installation).
 
 ```cs
 using Lajawi;       // Either add this using to your script,
-                    // or use Lajawi.<method>
+                    // or use Lajawi.<method> to call the methods
 
-[Serializable]
-public class Data   // Class meant for serializing
+public class Data   // Example class meant for serializing
 {
     public int id;
-    public string name;
 
-    // Classes meant for saving can only include parameterless
-    // constructors
-    //public Data(int id, string name) { }          // INVALID
-    //public Data(int id = 0, string name = "") { } // INVALID
-    //public Data() { }                             // ALLOWED
+    // All variables that need to be saved,
+    // need to be publicly accessible
+    public string Name { get; private set; }
+
+    public Data(string name)
+    {
+        Name = name;
+    }
 }
 
 public class GameManager : MonoBehaviour
@@ -29,10 +30,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Data data = new Data{ id = 1, name = "lajawi" };
+        // Because of Name's setter accessibility, you have
+        // to use the constructor to set it
+        Data data = new Data("lajawi") { id = 1 };
 
         // Your data will be saved in the persistent datapath
-        // that Unity provides
+        // that Unity provides, at your path
         // In the case of WebGL builds, data will be stored
         // in the PlayerPrefs instead, with the PATH as key
         SaveSystem.Save(PATH, data);
@@ -44,17 +47,20 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log($"ID: {readData.id}, name: {readData.name}");
         }
-    }
-}
-```
 
-```cs
-// Saving lists and arrays is currently not possible
-// Use a wrapping object instead
-[Serializable]
-public class Data
-{
-    public List<string> names = new List<string>();
+        // Saving other types, like primitives, lists,
+        // dictionaries, arrays... is possible too
+        SaveSystem.Save("string", "Hello World!");
+        SaveSystem.Save("List", new List<int>() { 0, 1, 1, 2, 3, 5 });
+        SaveSystem.Save("Dictionary", new Dictionary<int, string>() {
+            { 0, "Zero" },
+            { 2, "Two" },
+            { 25, "Twenty-five" },
+        });
+
+        // And of course, custom classes with all variables
+        // of any type above will work too
+    }
 }
 ```
 
