@@ -43,6 +43,12 @@ namespace Lajawi
             SaveClass(location, wrapper);
         }
 
+        public static void Save<K, V>(string location, Dictionary<K, V> data)
+        {
+            DictionaryWrapper<K, V> wrapper = new() { Dictionary = data };
+            SaveClass(location, wrapper);
+        }
+
         /// <summary>
         /// Save a custom class
         /// </summary>
@@ -246,6 +252,44 @@ namespace Lajawi
         private class ItemWrapper<T>
         {
             public T Item;
+        }
+
+        [Serializable]
+        private class DictionaryWrapper<K, V>
+        {
+            public Dictionary<K, V> Dictionary { get { return LoadDictionary(); } set { SaveDictionary(value); } }
+
+            public List<K> keys = new();
+            public List<V> values = new();
+
+            private void SaveDictionary(Dictionary<K, V> dictionary)
+            {
+                keys = dictionary.Select(x => x.Key).ToList();
+                values = dictionary.Select(x => x.Value).ToList();
+            }
+
+            private Dictionary<K, V> LoadDictionary()
+            {
+                return keys.Zip(values, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
+            }
+        }
+
+        [Serializable]
+        private class DictionaryWrapper2<K, V>
+        {
+            public Dictionary<K, V> Dictionary { get { return LoadDictionary(); } set { SaveDictionary(value); } }
+
+            public List<KeyValuePair<K, V>> entries = new();
+
+            private void SaveDictionary(IDictionary<K, V> dictionary)
+            {
+                entries = Dictionary.ToList();
+            }
+
+            private Dictionary<K, V> LoadDictionary()
+            {
+                return entries.Select(x => x.Key).Zip(entries.Select(x => x.Value), (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
+            }
         }
     }
 }
