@@ -21,7 +21,7 @@ namespace Lajawi
         /// <param name="data">Data that needs saving</param>
         public static void Save<T>(string location, T data)
         {
-            if (IsTypeOfType(data))
+            if (IsPrimitive(data))
             {
                 SaveType(location, data);
                 return;
@@ -176,7 +176,7 @@ namespace Lajawi
         {
             data = new();
 
-            if (IsTypeOfType(data))
+            if (IsPrimitive(data))
                 return ParseType(json, out data);
 
             return ParseClass(json, out data);
@@ -223,28 +223,14 @@ namespace Lajawi
         }
 
         /// <summary>
-        /// Get whether or not data is a basic type (e.g. int, float, string, uint)
+        /// Get whether or not data is a primitive, object, string, or enum
         /// </summary>
         /// <typeparam name="T">Type of data</typeparam>
         /// <param name="data">Data to check whether it is of basic type</param>
         /// <returns>True if it is a basic type</returns>
-        private static bool IsTypeOfType<T>(T data)
+        private static bool IsPrimitive<T>(T data)
         {
-            return data.GetType() == typeof(bool)
-                || data.GetType() == typeof(byte)
-                || data.GetType() == typeof(sbyte)
-                || data.GetType() == typeof(char)
-                || data.GetType() == typeof(decimal)
-                || data.GetType() == typeof(double)
-                || data.GetType() == typeof(float)
-                || data.GetType() == typeof(int)
-                || data.GetType() == typeof(uint)
-                || data.GetType() == typeof(nint)
-                || data.GetType() == typeof(nuint)
-                || data.GetType() == typeof(long)
-                || data.GetType() == typeof(ulong)
-                || data.GetType() == typeof(short)
-                || data.GetType() == typeof(ushort)
+            return data.GetType().IsPrimitive
                 || data.GetType() == typeof(object)
                 || data.GetType() == typeof(string)
                 || data.GetType().IsEnum;
