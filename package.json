@@ -1,6 +1,6 @@
 {
     "name": "com.github.lajawi.savesystem",
-    "version": "1.0.0",
+    "version": "2.0.2",
 
     "description": "A very small but powerful system to easily save and load data from JSON files.",
     "displayName": "Save System",

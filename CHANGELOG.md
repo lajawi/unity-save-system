@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased]
+
+## [2.0.2] - 2025-02-13
+
+### Changed
+
+- Unreleased comparison
+- Package.json Version
+
+### Removed
+
+- Unecessary using directives
+
 ## [2.0.1] - 2024-12-11
 
 ### Changed
@@ -30,7 +43,8 @@
 
 - Package structure
 
-[Unreleased]: https://github.com/lajawi/unity-save-system/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/lajawi/unity-save-system/compare/v2.0.2...develop
+[2.0.2]: https://github.com/lajawi/unity-save-system/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/lajawi/unity-save-system/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/lajawi/unity-save-system/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/lajawi/unity-save-system/compare/v0.0.1...v1.0.0
