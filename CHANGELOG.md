@@ -1,10 +1,11 @@
 # Changelog
 
-## [Unreleased]
+## [2.0.2]
 
 ### Changed
 
 - Unreleased comparison
+- Package.json Version
 
 ### Removed
 
